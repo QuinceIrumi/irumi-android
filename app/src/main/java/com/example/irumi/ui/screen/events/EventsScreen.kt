@@ -1,4 +1,4 @@
-package com.example.irumi.ui.screen
+package com.example.irumi.ui.screen.events
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

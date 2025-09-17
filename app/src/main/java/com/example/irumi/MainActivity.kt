@@ -13,10 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.irumi.ui.component.navBar.BottomNavBar
 import com.example.irumi.ui.component.navBar.BottomNavItem
-import com.example.irumi.ui.screen.EventsScreen
-import com.example.irumi.ui.screen.HomeScreen
-import com.example.irumi.ui.screen.PaymentsScreen
-import com.example.irumi.ui.screen.StatsScreen
+import com.example.irumi.ui.screen.events.EventsScreen
+import com.example.irumi.ui.screen.home.HomeScreen
+import com.example.irumi.ui.screen.payments.PaymentsScreen
+import com.example.irumi.ui.screen.stats.StatsScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.example.irumi.ui.screen
+package com.example.irumi.ui.screen.payments
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -6,6 +6,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HomeScreen(brand: Color) {
-    Text("홈", fontSize = 28.sp, color = brand)
+fun PaymentsScreen(brand: Color) {
+    Text("결제 내역", fontSize = 28.sp, color = brand)
 }
