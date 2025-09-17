@@ -26,7 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import com.example.pocketc.ui.theme.BrandGreen
+import com.example.irumi.ui.theme.BrandGreen
 
 sealed class BottomNavItem(val label: String, val icon: ImageVector) {
     data object Home : BottomNavItem("홈", Icons.Filled.Home)

@@ -16,9 +16,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.pocketc.R
-import com.example.pocketc.ui.intro.IntroActivity
-import com.example.pocketc.ui.theme.BrandGreen
+import com.example.irumi.R
+import com.example.irumi.ui.intro.IntroActivity
+import com.example.irumi.ui.theme.BrandGreen
 import kotlinx.coroutines.delay
 import androidx.compose.ui.graphics.Color
 

@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.dp
-import com.example.pocketc.ui.theme.BrandGreen
+import com.example.irumi.ui.theme.BrandGreen
 
 
 @Composable

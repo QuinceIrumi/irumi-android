@@ -13,9 +13,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.pocketc.ui.auth.AuthMockRepository
-import com.example.pocketc.ui.component.button.PrimaryButton
-import com.example.pocketc.ui.theme.BrandGreen
+import com.example.irumi.ui.auth.AuthMockRepository
+import com.example.irumi.ui.component.button.PrimaryButton
+import com.example.irumi.ui.theme.BrandGreen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)

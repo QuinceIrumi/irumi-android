@@ -18,11 +18,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.pocketc.R
+import com.example.irumi.R
+import com.example.irumi.ui.auth.register.RegisterActivity
+import com.example.irumi.ui.component.button.PrimaryButton
+import com.example.irumi.ui.theme.BrandGreen
 import com.example.pocketc.ui.auth.login.LoginActivity
-import com.example.pocketc.ui.auth.register.RegisterActivity
-import com.example.pocketc.ui.component.button.PrimaryButton
-import com.example.pocketc.ui.theme.BrandGreen
 
 class IntroActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
