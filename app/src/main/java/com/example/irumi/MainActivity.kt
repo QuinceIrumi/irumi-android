@@ -3,45 +3,58 @@ package com.example.irumi
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.irumi.ui.theme.IrumiTheme
+import androidx.compose.ui.graphics.Color
+import com.example.irumi.ui.component.navBar.BottomNavBar
+import com.example.irumi.ui.component.navBar.BottomNavItem
+import com.example.irumi.ui.screen.EventsScreen
+import com.example.irumi.ui.screen.HomeScreen
+import com.example.irumi.ui.screen.PaymentsScreen
+import com.example.irumi.ui.screen.StatsScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            IrumiTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
+        setContent { MainScreen() }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun MainScreen() {
+    val brand = Color(0xFF4CAF93)
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    IrumiTheme {
-        Greeting("Android")
+    val items = remember {
+        listOf(
+            BottomNavItem.Home,
+            BottomNavItem.Payments,
+            BottomNavItem.Stats,
+            BottomNavItem.Events
+        )
+    }
+    var selected by remember { mutableStateOf<BottomNavItem>(BottomNavItem.Home) }
+
+    Scaffold(
+        bottomBar = {
+            BottomNavBar(
+                items = items,
+                selected = selected,
+                onSelect = { selected = it }
+            )
+        }
+    ) { inner ->
+        Box(Modifier.fillMaxSize().padding(inner), contentAlignment = Alignment.Center) {
+            when (selected) {
+                BottomNavItem.Home -> HomeScreen(brand)
+                BottomNavItem.Payments -> PaymentsScreen(brand)
+                BottomNavItem.Stats -> StatsScreen(brand)
+                BottomNavItem.Events -> EventsScreen(brand)
+            }
+        }
     }
 }
