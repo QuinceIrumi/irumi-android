@@ -1,4 +1,4 @@
-package com.example.irumi.model.events
+package com.example.irumi.model.event
 
 import java.time.LocalDateTime
 

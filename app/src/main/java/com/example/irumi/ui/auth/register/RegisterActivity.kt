@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.irumi.MainActivity
-import com.example.pocketc.ui.auth.login.LoginActivity
+import com.example.irumi.ui.auth.login.LoginActivity
 
 class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

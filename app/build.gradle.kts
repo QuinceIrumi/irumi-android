@@ -49,6 +49,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.ui.graphics)
+    implementation(libs.androidx.benchmark.traceprocessor)
+    implementation(libs.androidx.compose.foundation.layout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -61,4 +64,8 @@ dependencies {
     implementation("androidx.compose.material3:material3:<latest>")
     // 아이콘
     implementation("androidx.compose.material:material-icons-extended:<latest>")
+    // Coil 이미지
+    implementation("io.coil-kt:coil-compose:2.6.0")
+    // viewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.3")
 }
