@@ -45,7 +45,7 @@
         <!-- MainActivity: 로그인/회원가입 성공 시 이동할 메인 -->
         <!-- 현재 소스 트리 기준 경로는 ui 패키지 아래이므로 .ui.MainActivity 로 지정 -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="false"
             android:theme="@style/Theme.Irumi" />
 

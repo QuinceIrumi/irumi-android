@@ -1,4 +1,4 @@
-package com.example.irumi
+package com.example.irumi.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

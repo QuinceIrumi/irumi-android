@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.irumi.MainActivity
+import com.example.irumi.ui.MainActivity
 import com.example.pocketc.ui.auth.login.LoginRoute
 
 class LoginActivity : ComponentActivity() {
