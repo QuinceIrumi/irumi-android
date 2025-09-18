@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
@@ -14,6 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.*
 import com.example.irumi.ui.theme.BrandGreen
+import kotlin.math.ceil
+import kotlin.math.min
 
 data class Friend(val id: Int, val name: String)
 
@@ -172,26 +175,72 @@ fun TodoSection() {
 }
 
 @Composable
-fun StreakSection(friendName: String? = null) {
-    val streakDays = List(60) { it % 7 != 0 } // 예시 데이터
+fun StreakSection(
+    friendName: String? = null,
+    totalDays: Int = 365,                 // 전체 일수
+    boxSize: Dp = 14.dp,                  // 칸 크기
+    boxSpacing: Dp = 3.dp,                // 칸 간격
+    weekSpacing: Dp = 6.dp,               // 주(열) 간격
+    days: List<Boolean>? = null,          // true=활동, false=미활동 (없으면 예시 데이터)
+    startWeekdayOffset: Int = 0           // 주 시작 요일 보정(0=일, 1=월 …) 필요시 사용
+) {
+    // 데이터 준비(예시: 3일마다 성공)
+    val streakDays = remember(days, totalDays) {
+        days ?: List(totalDays) { i -> (i % 3) == 0 }
+    }
+
+    // 주(열) 개수
+    val weeks = ceil(totalDays / 7.0).toInt()
+
     Column {
         Text(
-            if (friendName == null) "나의 스트릭" else "$friendName 의 스트릭",
-            fontWeight = FontWeight.Bold, fontSize = 18.sp
+            text = friendName?.let { "$it 의 스트릭" } ?: "나의 스트릭",
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp
         )
         Spacer(Modifier.height(8.dp))
+
+        // ── 가로: 주(열) ────────────────────────────────────────────────
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(100.dp)
+                .height((boxSize * 7) + (boxSpacing * 6)), // 7행 높이
+            horizontalArrangement = Arrangement.spacedBy(weekSpacing)
         ) {
-            items(streakDays.size) { idx ->
-                Box(
-                    modifier = Modifier
-                        .size(20.dp)
-                        .padding(2.dp)
-                        .background(if (streakDays[idx]) BrandGreen else Color.LightGray)
-                )
+            items(weeks) { weekIndex ->
+                // 이 주에 들어갈 7일 슬라이스
+                val start = weekIndex * 7
+                val end = min(start + 7, streakDays.size)
+                val weekSlice = if (start < end) streakDays.subList(start, end) else emptyList()
+
+                // 필요시 요일 오프셋 채우기 (주 시작 요일 보정)
+                val leadingEmpty = (if (weekIndex == 0) startWeekdayOffset else 0)
+                val padded = buildList<Boolean?> {
+                    repeat(leadingEmpty) { add(null) }
+                    addAll(weekSlice.map { it })
+                    while (size < 7) add(null) // 마지막 열 빈칸 채우기
+                }.take(7)
+
+                // ── 세로: 요일(행) ────────────────────────────────────────
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(boxSpacing)
+                ) {
+                    repeat(7) { dayRow ->
+                        val state = padded[dayRow] // Boolean? (null=빈칸)
+                        Box(
+                            modifier = Modifier
+                                .size(boxSize)
+                                .clip(RoundedCornerShape(3.dp))
+                                .background(
+                                    when (state) {
+                                        null -> Color(0xFFEDEDED)             // 캘린더 없는 칸
+                                        true -> BrandGreen                    // 성공
+                                        false -> Color(0xFFDFDFDF)           // 실패/미활동
+                                    }
+                                )
+                        )
+                    }
+                }
             }
         }
     }
